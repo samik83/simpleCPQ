@@ -11,7 +11,7 @@
   "sourceApiVersion": "63.0"
 }
 {
-  "name": "SalesforceCPQ",
+  "name": "simpleCPQ",
   "private": true,
   "version": "1.0.0",
   "description": "Salesforce CPQ App",
