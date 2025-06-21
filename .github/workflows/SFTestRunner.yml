@@ -26,7 +26,7 @@ jobs:
                 
         # Creating to Scratch org        
       - name: Create a Scratch Org
-        run: sf org create scratch --definition-file config/project-scratch-def.json --set-default --alias CI_Scratch_Org
+        run: sf org create scratch --definition-file config/project-scratch-def.json --set-default --set-default-dev-hub --alias CI_Scratch_Org
         working-directory: ./
         # Inserting metadata objects to Scratch org
       - name: Push source to Scratch Org
