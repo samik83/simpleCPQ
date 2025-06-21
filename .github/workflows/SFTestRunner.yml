@@ -1,5 +1,7 @@
 name: Salesforce Apex Test Runner Workflow
 on: push
+env:
+  ORG_ALIAS: org_alias
 jobs:
   salesforce-apex-test-runner-workflow:
     runs-on: ubuntu-latest
