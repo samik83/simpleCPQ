@@ -19,21 +19,8 @@ jobs:
       - name: Install Latest Salesforce Code Analyzer CLI Plugin
         run: sf plugins install code-analyzer@latest
 
-      # We need to use a key value stored as GitHub secret and 
-      # create a .key file since 'sf org login jwt' command expects a path 
-      # to .key file as a parameter
-      - name: Create server key file
-        run: |
-          touch server.key
-          echo -e "${{ secrets.SF_CICD_SERVERKEY }}" >> server.key          
-      # Authorization with DevHub. Notice that all critical values are
-      # used from the GitHub secrets storage and aren't public
-      - name: Authorize DevHub
-        run: sf org login jwt --json --alias DevHub 
-                --set-default --set-default-dev-hub 
-                --username ${{ secrets.SF_CICD_USERNAME }}  
-                --keyfile server.key 
-                --clientid ${{ secrets.SF_CICD_CONSUMERKEY }}
+      - name: 'Authorize to the Org'
+        run: echo "${{ secrets.ORG_SFDX_URL }}" | sf org login sfdx-url --alias $ORG_ALIAS --set-default --sfdx-url-stdin
                 
         # Creating to Scratch org        
       - name: Create a Scratch Org
