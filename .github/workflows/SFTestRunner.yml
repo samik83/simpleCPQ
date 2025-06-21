@@ -22,11 +22,11 @@ jobs:
         run: sf plugins install code-analyzer@latest
 
       - name: 'Authorize to the Org'
-        run: echo "${{ secrets.ORG_SFDX_URL }}" | sf org login sfdx-url --alias $ORG_ALIAS --set-default --sfdx-url-stdin
+        run: echo "${{ secrets.ORG_SFDX_URL }}" | sf org login sfdx-url --alias $ORG_ALIAS --set-default --set-default-dev-hub --sfdx-url-stdin
                 
         # Creating to Scratch org        
       - name: Create a Scratch Org
-        run: sf org create scratch --definition-file config/project-scratch-def.json --set-default --set-default-dev-hub --alias CI_Scratch_Org
+        run: sf org create scratch --definition-file config/project-scratch-def.json --set-default --alias CI_Scratch_Org
         working-directory: ./
         # Inserting metadata objects to Scratch org
       - name: Push source to Scratch Org
