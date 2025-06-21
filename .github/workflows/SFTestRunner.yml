@@ -1,0 +1,95 @@
+Skip to content
+Navigation Menu
+bloomfire
+salesforce-app
+
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Salesforce Apex Test Runner Workflow
+Merge pull request #84 from bloomfire/uat-bug-fixes #436
+Jobs
+Run details
+Workflow file for this run
+.github/workflows/SFTestRunner.yml at 595e5b7
+name: Salesforce Apex Test Runner Workflow
+on: push
+jobs:
+  salesforce-apex-test-runner-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out files
+        uses: actions/checkout@v4
+
+      # PREREQUISITES - Only needed if runner doesn't already satisfy these requirements
+      - name: Ensure node v20.9.0 or greater
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=20.9.0'
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@latest
+
+      - name: Install Latest Salesforce Code Analyzer CLI Plugin
+        run: sf plugins install code-analyzer@latest
+
+      # We need to use a key value stored as GitHub secret and 
+      # create a .key file since 'sf org login jwt' command expects a path 
+      # to .key file as a parameter
+      - name: Create server key file
+        run: |
+          touch server.key
+          echo -e "${{ secrets.SF_CICD_SERVERKEY }}" >> server.key          
+      # Authorization with DevHub. Notice that all critical values are
+      # used from the GitHub secrets storage and aren't public
+      - name: Authorize DevHub
+        run: sf org login jwt --json --alias DevHub 
+                --set-default --set-default-dev-hub 
+                --username ${{ secrets.SF_CICD_USERNAME }}  
+                --keyfile server.key 
+                --clientid ${{ secrets.SF_CICD_CONSUMERKEY }}
+                
+        # Creating to Scratch org        
+      - name: Create a Scratch Org
+        run: sf org create scratch --definition-file config/project-scratch-def.json --set-default --alias CI_Scratch_Org
+        working-directory: ./
+        # Inserting metadata objects to Scratch org
+      - name: Push source to Scratch Org
+        run: sf project deploy start --source-dir force-app --target-org CI_Scratch_Org --concise
+        working-directory: ./
+      # Running tests to make sure nothing is broken 
+      - name: Run unit tests
+        id: run-apex-tests
+        run: |
+          sf apex run test --wait 30 --test-level RunAllTestsInOrg --target-org CI_Scratch_Org --code-coverage  --detailed-coverage --output-dir test-results --result-format human --concise
+          EXIT_CODE=$?
+          echo "::set-output name=exit_code::$EXIT_CODE"
+        working-directory: ./
+      - name: Publish Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./test-results
+      - name: Delete Scratch Org
+        if: always()
+        run: sf org delete scratch --target-org CI_Scratch_Org --no-prompt
+      
+      - name: Check covergae
+        run: |
+          org_wide_coverage=$(grep 'Org Wide Coverage' ./test-results/test-result.txt | awk '{print $NF}' | sed 's/%//')
+          echo "org_wide_coverage fetched from file: $org_wide_coverage"
+          if (( $(echo "$org_wide_coverage > 75" | bc -l) )); then
+            echo "org_wide_coverage is greater than 75: $org_wide_coverage"
+          else
+            echo "org_wide_coverage is not greater than 75: $org_wide_coverage"
+          exit 1
+          fi
+        shell: bash
