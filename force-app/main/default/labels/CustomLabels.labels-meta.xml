@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>IB_En_LinkedToObject_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>IB-En-LinkedToObject-Success</shortDescription>
+        <value>Content Successfully Linked.</value>
+    </labels>
+    <labels>
+        <fullName>IB_En_LinkedToObject_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>IB-En-LinkedToObject-Error</shortDescription>
+        <value>There are some error while linking the content.</value>
+    </labels>
+
+    <labels>
+        <fullName>IB_En_UnLinkedToObject_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>IB-En-UnLinkedToObject-Success</shortDescription>
+        <value>Content Successfully Unlinked.</value>
+    </labels>
+    <labels>
+        <fullName>IB_En_UnLinkedToObject_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>IB-En-UnLinkedToObject-Error</shortDescription>
+        <value>There are some error while unlinking the content.</value>
+    </labels>
+</CustomLabels>

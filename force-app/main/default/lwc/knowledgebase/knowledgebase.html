@@ -1,0 +1,227 @@
+<template
+  ><lightning-card class="custom-card">
+    <div class="header">
+      <div class="slds-grid">
+        <div class="slds-col knowledge-logo">
+          <img src={logourl} height="30" width="30" />
+        </div>
+        <div class="slds-col knowledge-community-dropdown">
+          <lightning-combobox
+            options={userCommunities}
+            onchange={handleCommunityChange}
+            placeholder="Select a community"
+          ></lightning-combobox>
+        </div>
+        <div class="slds-col knowledge-community-filter-container">
+          <lightning-icon
+            icon-name="utility:filter"
+            size="xx-small"
+          ></lightning-icon>
+        </div>
+      </div>
+    </div>
+    <div class="search-box">
+      <p>
+        <lightning-input
+          type="text"
+          name="search"
+          placeholder="Search here..."
+          onkeydown={prfrmManualSearch}
+          onchange={handleSearchPhrase}
+          class="custom-input"
+        ></lightning-input>
+      </p>
+    </div>
+    <!-- Show spinner while loading -->
+    <template if:true={isLoading}>
+      <div class="spinner-container">
+        <lightning-spinner
+          alternative-text="Loading..."
+          size="medium"
+        ></lightning-spinner>
+      </div>
+    </template>
+    <div class="search-result">
+      <div class="search-result-header">
+        <span>{searchResultHeader}</span>
+        <span style="font-size: 12px; font-weight: normal"
+          >{selectedCommunity}</span
+        >
+      </div>
+      <template for:each={contentList} for:item="contentItem">
+        <div class="bottom-spacing" key={contentItem.Id}></div>
+        <div class="search-item" key={contentItem.Id}>
+          <div class="item-row">
+            <div class="slds-grid">
+              <div class="slds-col" style="width: 70%">
+                <a
+                  class="item-title"
+                  onclick={handleTitleClick}
+                  data-contentid={contentItem.Id}
+                  data-content={contentItem.Question__c}
+                  data-createdby={contentItem.CreatedById}
+                  data-publishdate={contentItem.LastPublishedDate}
+                  data-title={contentItem.Title}
+                  >{contentItem.Title}</a
+                >
+              </div>
+              <div class="slds-col" style="text-align: right">
+                <span>
+                  <!-- #0070d2 -->
+                  <svg
+                    fill="#ccc"
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 356.98 356.98"
+                    xml:space="preserve"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <g>
+                        <g>
+                          <g>
+                            <path
+                              d="M340.188,56.127c-15.288-20.089-39.344-31.63-73.577-35.302c-2.773-0.282-5.698-0.453-8.707-0.453 c-30.354,0-60.594,14.24-79.413,36.863c-18.834-22.623-49.062-36.863-79.401-36.863c-3.005,0-5.915,0.171-8.743,0.453 c-34.182,3.672-58.231,15.219-73.528,35.296C1.65,76.024-3.295,103.007,2.133,136.315 c7.926,48.323,70.505,107.171,120.778,154.464l1.149,1.081c14,13.192,26.097,24.571,33.973,33.051 c1.065,1.188,10.664,11.697,21.173,11.697c10.574,0,19.96-10.665,20.812-11.686c8.37-9.079,21.96-21.947,35.38-34.636 c49.714-47.161,111.581-105.853,119.43-153.99C360.28,103.013,355.368,76.042,340.188,56.127z"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </span>
+                <span style="margin: 0px 5px">
+                  <!--#FF6E6E-->
+                  <svg
+                    width="16px"
+                    height="16px"
+                    viewBox="0 -0.5 33 33"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <g id="SVGRepo_bgCarrier1" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier1"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier1">
+                      <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                      <title>star</title>
+                      <desc>Created with Sketch.</desc>
+                      <defs></defs>
+                      <g
+                        id="Vivid.JS"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Vivid-Icons"
+                          transform="translate(-903.000000, -411.000000)"
+                          fill="#ccc"
+                        >
+                          <g
+                            id="Icons"
+                            transform="translate(37.000000, 169.000000)"
+                          >
+                            <g
+                              id="star"
+                              transform="translate(858.000000, 234.000000)"
+                            >
+                              <g
+                                transform="translate(7.000000, 8.000000)"
+                                id="Shape"
+                              >
+                                <polygon
+                                  points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22"
+                                ></polygon>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </span>
+                <span class="content-type">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 26"
+                    fill="none"
+                    style="margin-top: -0.02rem"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M19.5 15.6857L19.5 4.5H4.5V18.75L5.25 19.5L13.7205 19.5V19.5H15.2205V19.5H15.6857L19.5 15.6857ZM15.2205 17.8439L17.8437 15.2206H15.2205V17.8439ZM18 13.7206L18 6L6 6L6 18L13.7205 18V13.7206H18Z"
+                      fill="#666666"
+                    /></svg
+                  >POST</span
+                >
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="slds-grid">
+              <div class="slds-col" style="display: contents">
+                <img
+                  src={userAvatar}
+                  class="author-avatar"
+                  style="margin-top: -0.2rem"
+                />
+              </div>
+              <div class="slds-col">
+                <div
+                  style="
+                    font-family: Helvetica;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #666;
+                  "
+                >
+                  {createdBy}
+                </div>
+                <div
+                  style="
+                    font-family: Helvetica;
+                    font-size: 10px;
+                    font-weight: 500;
+                    color: #666;
+                    gap: 3px;
+                  "
+                >
+                  Updated:
+                  <lightning-formatted-date-time
+                    value={contentItem.LastPublishedDate}
+                    year="2-digit"
+                    month="short"
+                    day="2-digit"
+                  ></lightning-formatted-date-time>
+                </div>
+              </div>
+              <div class="slds-col" style="text-align: right">
+                <c-link-to-object
+                  record-id={recordId}
+                  content-id={contentItem.Id}
+                  object-name={objectApiName}
+                ></c-link-to-object>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div> </lightning-card
+></template>

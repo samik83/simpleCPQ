@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>InsightBaseMessageChannel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>This is Insight Base Lightning Message Channel.</description>
+    <lightningMessageFields>
+        <fieldName>recordId</fieldName>
+        <description>record identifier</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>objName</fieldName>
+        <description>Object identifier</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>contentId</fieldName>
+        <description>content identifier</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>action</fieldName>
+        <description>action identifier</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

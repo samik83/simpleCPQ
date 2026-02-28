@@ -1,0 +1,305 @@
+<template>
+  <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <div class="slds-modal__header modal-header">
+        <div class="slds-grid slds-grid_align-spread">
+          <div class="slds-col" style="width: 90%; text-align: left">
+            <div class="slds-grid" style="gap: 5px">
+              <div class="slds-col">
+                <c-link-to-object
+                  record-id={recordId}
+                  content-id={contentId}
+                  object-name={objectApiName}
+                ></c-link-to-object>
+              </div>
+              <div class="slds-col">
+                <button
+                  class="slds-button slds-button_outline-brand"
+                  style="background-color: #0070d207; gap: 5px"
+                >
+                  <svg
+                    fill="#0070d2"
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="15px"
+                    height="15px"
+                    viewBox="0 0 356.98 356.98"
+                    xml:space="preserve"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <g>
+                        <g>
+                          <g>
+                            <path
+                              d="M340.188,56.127c-15.288-20.089-39.344-31.63-73.577-35.302c-2.773-0.282-5.698-0.453-8.707-0.453 c-30.354,0-60.594,14.24-79.413,36.863c-18.834-22.623-49.062-36.863-79.401-36.863c-3.005,0-5.915,0.171-8.743,0.453 c-34.182,3.672-58.231,15.219-73.528,35.296C1.65,76.024-3.295,103.007,2.133,136.315 c7.926,48.323,70.505,107.171,120.778,154.464l1.149,1.081c14,13.192,26.097,24.571,33.973,33.051 c1.065,1.188,10.664,11.697,21.173,11.697c10.574,0,19.96-10.665,20.812-11.686c8.37-9.079,21.96-21.947,35.38-34.636 c49.714-47.161,111.581-105.853,119.43-153.99C360.28,103.013,355.368,76.042,340.188,56.127z"
+                            ></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Like</span>
+                </button>
+              </div>
+              <div class="slds-col">
+                <button
+                  class="slds-button slds-button_outline-brand"
+                  style="background-color: #0070d207; gap: 5px"
+                >
+                  <svg
+                    width="15px"
+                    height="15px"
+                    viewBox="0 -0.5 33 33"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="rgba(1, 118, 211, 1)"
+                  >
+                    <g id="SVGRepo_bgCarrier1" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier1"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier1">
+                      <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                      <title>star</title>
+                      <desc>Created with Sketch.</desc>
+                      <defs></defs>
+                      <g
+                        id="Vivid.JS"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                      >
+                        <g
+                          id="Vivid-Icons"
+                          transform="translate(-903.000000, -411.000000)"
+                          fill="#FF6E6E"
+                        >
+                          <g
+                            id="Icons"
+                            transform="translate(37.000000, 169.000000)"
+                          >
+                            <g
+                              id="star"
+                              transform="translate(858.000000, 234.000000)"
+                            >
+                              <g
+                                transform="translate(7.000000, 8.000000)"
+                                id="Shape"
+                              >
+                                <polygon
+                                  points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22"
+                                ></polygon>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <span>Follow</span>
+                </button>
+              </div>
+              <div class="slds-col"></div>
+            </div>
+          </div>
+          <div class="slds-col" style="width: 10%; text-align: right">
+            <span
+              ><button class="slds-button" onclick={handleClose}>
+                <p>
+                  <svg
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g stroke-width="0"></g>
+                    <g stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g>
+                      <g clip-path="url(#clip0_429_11083)">
+                        <path
+                          d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
+                          stroke="#0070d2"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_429_11083">
+                          <rect width="24" height="24" fill="white"></rect>
+                        </clipPath>
+                      </defs>
+                    </g>
+                  </svg>
+                </p></button
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="slds-modal__content" style="padding: 0">
+        <div
+          class="slds-grid"
+          style="justify-content: stretch; padding: 0 15px"
+        >
+          <div class="slds-col" style="display: contents">
+            <img src={userAvatar} class="author-avatar" />
+          </div>
+          <div class="slds-col" style="margin-top: 3px">
+            <div
+              style="
+                font-family: Helvetica;
+                font-size: 12px;
+                font-weight: 600;
+                color: #666;
+              "
+            >
+              {authorName}
+            </div>
+            <div
+              style="
+                font-family: Helvetica;
+                font-size: 10px;
+                font-weight: 500;
+                color: #777;
+              "
+            >
+              <lightning-formatted-date-time
+                value={publishdate}
+                year="2-digit"
+                month="short"
+                day="2-digit"
+              ></lightning-formatted-date-time>
+            </div>
+          </div>
+          <div class="slds-col" style="text-align: right; margin-top: 5px">
+            <span class="content-type">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15px"
+                height="15px"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M19.5 15.6857L19.5 4.5H4.5V18.75L5.25 19.5L13.7205 19.5V19.5H15.2205V19.5H15.6857L19.5 15.6857ZM15.2205 17.8439L17.8437 15.2206H15.2205V17.8439ZM18 13.7206L18 6L6 6L6 18L13.7205 18V13.7206H18Z"
+                  fill="#666666"
+                />
+              </svg>
+              POST
+            </span>
+          </div>
+        </div>
+        <div style="padding: 0 15px">
+          <h1 style="font-size: 30px; font-weight: 600">{title}</h1>
+          <lightning-formatted-rich-text
+            value={content}
+          ></lightning-formatted-rich-text>
+        </div>
+        <div
+          style="
+            background-color: aliceblue;
+            padding: 0 15px;
+            padding-bottom: 10px;
+          "
+        >
+          <div style="padding: 10px 0">
+            <div class="slds-grid">
+              <div class="slds-col">
+                <span
+                  style="
+                    font-family: Helvetica;
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: #666;
+                  "
+                  >Comments ({commentLength})</span
+                >
+              </div>
+              <div class="slds-col" style="text-align: right">
+                <a href="#" onclick={handleAddCommentBox}>Add Comment</a>
+              </div>
+            </div>
+            <div
+              tabindex="0"
+              class="commentBox"
+              style="padding: 5px; display: none"
+            >
+              <div>
+                <lightning-textarea
+                  placeholder="type comment here..."
+                  name="comment"
+                  class="commentText"
+                  onkeyup={storeComment}
+                ></lightning-textarea>
+              </div>
+              <div style="text-align: right; margin-top: 3px">
+                <lightning-button
+                  variant="brand"
+                  label="Post"
+                  onclick={postComment}
+                ></lightning-button>
+              </div>
+            </div>
+          </div>
+          <div class="commentContainer">
+            <template for:each={comments} for:item="comment">
+              <div tabindex="0" key={comment.Id} class="commentItem">
+                <div
+                  class="slds-grid"
+                  style="justify-content: stretch; gap: 10px"
+                >
+                  <div class="slds-col" style="display: contents">
+                    <img src={userAvatar} class="author-avatar" />
+                  </div>
+                  <div class="slds-col" style="margin-top: 3px">
+                    <div
+                      style="
+                        font-family: Helvetica;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #666;
+                      "
+                    >
+                      {authorName}
+                    </div>
+                    <div
+                      style="
+                        font-family: Helvetica;
+                        font-size: 10px;
+                        font-weight: 500;
+                        color: #777;
+                      "
+                    >
+                      <lightning-formatted-date-time
+                        value={comment.date_created__c}
+                        year="2-digit"
+                        month="short"
+                        day="2-digit"
+                      ></lightning-formatted-date-time>
+                    </div>
+                  </div>
+                </div>
+                <div>{comment.Comment__c}</div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
